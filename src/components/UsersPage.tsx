@@ -2,11 +2,13 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 
 const UsersPage = () => {
-  const { data, isLoading, isError, error } = useQuery({
+  const { data, isLoading, isError, error, refetch } = useQuery({
     queryKey: ["users"],
     queryFn: getUsers,
-    gcTime: 5000,
-    staleTime: 10000,
+    // gcTime: 5000,
+    // staleTime: 10000,
+    // refetchOnMount: false,
+    enabled: false,
   });
 
   function getUsers() {
@@ -17,6 +19,7 @@ const UsersPage = () => {
   return (
     <div>
       <h3>HomePage</h3>
+      <button onClick={()=>refetch() as any}>fetch</button>
       <h4>users list</h4>
       {isError && <p>{error.message}</p>}
       <ul>
