@@ -5,6 +5,7 @@ const UsersPage = () => {
   const { data, isLoading, isError, error } = useQuery({
     queryKey: ["users"],
     queryFn: getUsers,
+    gcTime:5000,
   });
 
   function getUsers() {
